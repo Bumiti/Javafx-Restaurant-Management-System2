@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 
-<BorderPane fx:id="bpEODDetails" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@application.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FXMLFile.EODDetailController">
+<BorderPane fx:id="bpEODDetails" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="1000.0" stylesheets="@application.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="FXMLFile.EODDetailController">
    <top>
       <Label fx:id="lbDayDetail" BorderPane.alignment="CENTER" />
    </top>
@@ -21,7 +21,7 @@
    <center>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <TableView fx:id="tvChi" prefHeight="347.0" prefWidth="341.0">
+            <TableView fx:id="tvChi" prefHeight="347.0" prefWidth="500.0">
               <columns>
                 <TableColumn fx:id="colChiID" prefWidth="75.0" text="ID" />
                 <TableColumn fx:id="colChiTime" prefWidth="75.0" text="Time" />
@@ -33,7 +33,7 @@
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
             </TableView>
-            <TableView fx:id="tvThu" prefHeight="347.0" prefWidth="333.0">
+            <TableView fx:id="tvThu" prefHeight="347.0" prefWidth="500.0">
               <columns>
                 <TableColumn fx:id="colThuID" prefWidth="75.0" text="ID" />
                 <TableColumn fx:id="colThuTime" prefWidth="75.0" text="Time" />

@@ -158,6 +158,8 @@ public class LoginController implements Initializable {
         userStaffRole.btnInventoryDelete.setDisable(true);
         userStaffRole.btnStaffCreate.setDisable(true);
         userStaffRole.btnStaffDelete.setDisable(true);
+        userStaffRole.tfStaffSalary.setVisible(false);
+        userStaffRole.colStaffSalary.setVisible(false);
         userStaffRole.btnReceiptDelete.setDisable(true);
         userStaffRole.btnPaymentDelete.setDisable(true);
         userStaffRole.tabReport.setStyle("-fx-pref-width: 0;" + "-fx-opacity: 0;");
@@ -195,6 +197,8 @@ public class LoginController implements Initializable {
         userStaffRole.btnInventoryClear.setDisable(true);
         userStaffRole.btnStaffCreate.setDisable(true);
         userStaffRole.btnStaffBrowser.setDisable(true);
+        userStaffRole.tfStaffSalary.setVisible(false);
+        userStaffRole.colStaffSalary.setVisible(false);
         userStaffRole.btnStaffClear.setDisable(true);
         userStaffRole.btnStaffDelete.setDisable(true);
         userStaffRole.btnStaffUpdate.setDisable(true);

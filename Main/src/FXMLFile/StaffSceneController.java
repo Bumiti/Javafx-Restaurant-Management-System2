@@ -152,7 +152,7 @@ public class StaffSceneController implements Initializable {
     @FXML
     private ComboBox<String> cbStaffPossition;
     @FXML
-    private javafx.scene.control.TextField tfStaffSalary;
+    public javafx.scene.control.TextField tfStaffSalary;
     @FXML
     public Button btnStaffCreate;
     @FXML
@@ -168,7 +168,7 @@ public class StaffSceneController implements Initializable {
     @FXML
     private TableColumn<StaffDB, String> colStaffPossition;
     @FXML
-    private TableColumn<StaffDB, Integer> colStaffSalary;
+    public TableColumn<StaffDB, Integer> colStaffSalary;
     private Button btnBrowser;
     @FXML
     public Button btnStaffClear;
