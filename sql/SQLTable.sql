@@ -23,8 +23,7 @@ create table Inventory(
   productImage image,
 );
 go
-drop table staff
-go
+
 create table Staff(
   brandID int  FOREIGN KEY REFERENCES Restaurant(brandID),
   staffID int primary key identity(1,1),
