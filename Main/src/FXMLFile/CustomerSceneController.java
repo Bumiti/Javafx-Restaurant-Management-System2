@@ -618,7 +618,7 @@ public class CustomerSceneController implements Initializable {
     private static final String[] bookCatalogies = {"Eat at Restaurant", "Take-away"};
     ObservableList<String> Time = FXCollections.observableArrayList("10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "18:00", "18:30", "19:00", "19:30", "20:00", "20:30", "21:00", "21:30");
     SpinnerValueFactory<String> time = new SpinnerValueFactory.ListSpinnerValueFactory<String>(Time);
-    private static final AtomicInteger count = new AtomicInteger(100);
+    private static final AtomicInteger count = new AtomicInteger(200);
     public volatile boolean stop = false;
     private String theme1Url = getClass().getResource("/FXMLFile/DarkMode.css").toExternalForm();
     private String theme2Url = getClass().getResource("/FXMLFile/application.css").toExternalForm();
