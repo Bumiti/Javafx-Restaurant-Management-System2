@@ -726,8 +726,12 @@ public class StaffSceneController implements Initializable {
                 alert("Please fill choose Staff possition");
             } else if (!Pattern.matches("\\d{8,12}", tfStaffPhone.getText())) {
                 alert("Please fill Staff phone in right form");
+            } else if (checkUnique("select * from Staff where staffPhone=N'" + tfStaffPhone.getText() + "'") == false) {
+                alert("Your Phone is exits");
             } else if (!Pattern.matches("\\w{3,30}@([a-z0-9]{3,10}\\.){1,2}[a-z]{2,3}", tfStaffMail.getText())) {
                 alert("Please fill Staff mail in right form");
+            } else if (checkUnique("select * from Staff where staffMail=N'" + tfStaffMail.getText() + "'") == false) {
+                alert("Your Mail is exits");
             } else if (!Pattern.matches("\\d{1,}", tfStaffSalary.getText())) {
                 alert("Please fill Staff salary");
             } else if (!Pattern.matches("\\w{1,}", tfStaffUsername.getText())) {
@@ -758,8 +762,12 @@ public class StaffSceneController implements Initializable {
                 alert("Please fill choose Staff possition");
             } else if (!Pattern.matches("\\d{8,12}", tfStaffPhone.getText())) {
                 alert("Please fill Staff phone in right form");
+            } else if (checkUnique("select * from Staff where staffPhone=N'" + tfStaffPhone.getText() + "' and staffID!=" + lbStaffID.getText() + "") == false) {
+                alert("Your Phone is exits");
             } else if (!Pattern.matches("\\w{3,30}@([a-z0-9]{3,10}\\.){1,2}[a-z]{2,3}", tfStaffMail.getText())) {
                 alert("Please fill Staff mail in right form");
+            } else if (checkUnique("select * from Staff where staffMail=N'" + tfStaffMail.getText() + "' and staffID!=" + lbStaffID.getText() + "") == false) {
+                alert("Your Mail is exits");
             } else if (!Pattern.matches("\\d{1,}", tfStaffSalary.getText())) {
                 alert("Please fill Staff salary");
             } else if (!Pattern.matches("\\w{1,}", tfStaffUsername.getText())) {
@@ -1064,8 +1072,12 @@ public class StaffSceneController implements Initializable {
                 alert("Please fill Customer Address");
             } else if (!Pattern.matches("\\d{8,12}", tfCustomerPhone.getText())) {
                 alert("Please fill Customer phone in right form");
+            } else if (checkUnique("select * from Customer where customerPhone=N'" + tfCustomerPhone.getText() + "'") == false) {
+                alert("Your phone is exits");
             } else if (!Pattern.matches("\\w{3,30}@([a-z0-9]{3,10}\\.){1,2}[a-z]{2,3}", tfCustomerMail.getText())) {
                 alert("Please fill Customer mail in right form");
+            } else if (checkUnique("select * from Customer where customerMail=N'" + tfCustomerMail.getText() + "'") == false) {
+                alert("Your Mail is exits");
             } else if (cbCustomerGender.getValue() == null) {
                 alert("Please fill choose Customer gender");
             } else if (!Pattern.matches("\\w{1,}", tfCustomerUserName.getText())) {
@@ -1092,8 +1104,12 @@ public class StaffSceneController implements Initializable {
                 alert("Please fill Customer Address");
             } else if (!Pattern.matches("\\d{8,12}", tfCustomerPhone.getText())) {
                 alert("Please fill Customer phone in right form");
+            } else if (checkUnique("select * from Customer where customerPhone=N'" + tfCustomerPhone.getText() + "' and customerID!=" + lbCustomerID.getText() + "") == false) {
+                alert("Your Phone is exits");
             } else if (!Pattern.matches("\\w{3,30}@([a-z0-9]{3,10}\\.){1,2}[a-z]{2,3}", tfCustomerMail.getText())) {
                 alert("Please fill Customer mail in right form");
+            } else if (checkUnique("select * from Customer where customerMail=N'" + tfCustomerMail.getText() + "' and customerID!=" + lbCustomerID.getText() + "") == false) {
+                alert("Your Mail is exits");
             } else if (cbCustomerGender.getValue() == null) {
                 alert("Please fill choose Customer gender");
             } else if (!Pattern.matches("\\w{1,}", tfCustomerUserName.getText())) {
@@ -2172,7 +2188,7 @@ public class StaffSceneController implements Initializable {
             tfStaffDOB.setValue(s.getStaffDOB());
             tfStaffAddress.setText(s.getStaffAddress());
             cbStaffPossition.setValue(s.getStaffPossition());
-            tfStaffPhone.setText("" + s.getStaffPhone());
+            tfStaffPhone.setText(s.getStaffPhone());
             tfStaffMail.setText(s.getStaffMail());
             tfStaffSalary.setText("" + s.getStaffSalary());
             tfStaffUsername.setText(s.getStaffUserName());
@@ -2206,7 +2222,7 @@ public class StaffSceneController implements Initializable {
             st.setDate(2, java.sql.Date.valueOf(tfStaffDOB.getValue()));
             st.setString(3, tfStaffAddress.getText());
             st.setString(4, cbStaffPossition.getValue());
-            st.setInt(5, Integer.valueOf(tfStaffPhone.getText()));
+            st.setString(5, tfStaffPhone.getText());
             st.setString(6, tfStaffMail.getText());
             st.setInt(7, Integer.valueOf(tfStaffSalary.getText()));
             st.setString(8, tfStaffUsername.getText());
@@ -2240,7 +2256,7 @@ public class StaffSceneController implements Initializable {
             st.setDate(2, java.sql.Date.valueOf(tfStaffDOB.getValue()));
             st.setString(3, tfStaffAddress.getText());
             st.setString(4, cbStaffPossition.getValue());
-            st.setInt(5, Integer.valueOf(tfStaffPhone.getText()));
+            st.setString(5, tfStaffPhone.getText());
             st.setString(6, tfStaffMail.getText());
             st.setInt(7, Integer.valueOf(tfStaffSalary.getText()));
             st.setString(8, tfStaffUsername.getText());
@@ -2677,7 +2693,7 @@ public class StaffSceneController implements Initializable {
             tfCustomerName.setText(c.getCustomerName());
             tfCustomerDOB.setValue(c.getCustomerDOB());
             tfCustomerAddress.setText(c.getCustomerAddress());
-            tfCustomerPhone.setText("" + c.getCustomerPhone());
+            tfCustomerPhone.setText(c.getCustomerPhone());
             tfCustomerMail.setText(c.getCustomerMail());
             cbCustomerGender.setValue(c.getCustomerGender());
             tfCustomerUserName.setText(c.getCustomerUserName());
@@ -2709,7 +2725,7 @@ public class StaffSceneController implements Initializable {
             st.setString(1, tfCustomerName.getText());
             st.setDate(2, java.sql.Date.valueOf(tfCustomerDOB.getValue()));
             st.setString(3, tfCustomerAddress.getText());
-            st.setInt(4, Integer.valueOf(tfCustomerPhone.getText()));
+            st.setString(4, tfCustomerPhone.getText());
             st.setString(5, tfCustomerMail.getText());
             st.setString(6, cbCustomerGender.getValue());
             st.setString(7, tfCustomerUserName.getText());
@@ -2742,7 +2758,7 @@ public class StaffSceneController implements Initializable {
             st.setString(1, tfCustomerName.getText());
             st.setDate(2, java.sql.Date.valueOf(tfCustomerDOB.getValue()));
             st.setString(3, tfCustomerAddress.getText());
-            st.setInt(4, Integer.valueOf(tfCustomerPhone.getText()));
+            st.setString(4, tfCustomerPhone.getText());
             st.setString(5, tfCustomerMail.getText());
             st.setString(6, cbCustomerGender.getValue());
             st.setString(7, tfCustomerUserName.getText());

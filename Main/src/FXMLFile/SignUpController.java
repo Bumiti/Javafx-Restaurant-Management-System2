@@ -195,7 +195,7 @@ public class SignUpController implements Initializable {
             st.setString(1, tfSignUpFullName.getText());
             st.setDate(2, java.sql.Date.valueOf(tfSignUpDOB.getValue()));
             st.setString(3, tfSignUpAddress.getText());
-            st.setInt(4, Integer.valueOf(tfSignUpPhone.getText()));
+            st.setString(4, tfSignUpPhone.getText());
             st.setString(5, tfSignUpMail.getText());
             RadioButton button = (RadioButton) gender.getSelectedToggle();
             st.setString(6, button.getText());

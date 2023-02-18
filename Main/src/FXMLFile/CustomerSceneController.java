@@ -1010,7 +1010,7 @@ public class CustomerSceneController implements Initializable {
                 }
                 tfSignUpMail.setText(rs.getString("customerMail"));
                 tfSignUpAddress.setText(rs.getString("customerAddress"));
-                tfSignUpPhone.setText("" + rs.getInt("customerPhone"));
+                tfSignUpPhone.setText("" + rs.getString("customerPhone"));
                 cusList.add(c);
             }
             cn.close();
