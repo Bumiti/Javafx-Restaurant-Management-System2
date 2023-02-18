@@ -587,13 +587,19 @@ public class CustomerSceneController implements Initializable {
                         + "One uppercase [A-Z],\n"
                         + "One special character like !@#.\n"
                         + "8-20 characters");
+            } else if (!Pattern.matches("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,20}$", tfSignUpPassWord2.getText())) {
+                alert("Password must contain at least 1 digit [0-9],\n"
+                        + "One lowercase [a-z],"
+                        + "One uppercase [A-Z],\n"
+                        + "One special character like !@#.\n"
+                        + "8-20 characters");
             } else if (!Pattern.matches(tfSignUpPassWord1.getText(), tfSignUpPassWord2.getText())) {
                 alert("Password is not same");
             } else if (imgCustomer.getImage() == null) {
                 alert("Please choose image");
             } else {
                 alertSuccess("Successfully Update");
-                update("update Account set accountUserName=N'" + tfSignUpUserName.getText() + "',accountPassWord=" + tfSignUpPassWord2.getText() + ",accountRole='Customer' where accountUserName=N'" + lbCusName.getText() + "'");
+                update("update Account set accountUserName=N'" + tfSignUpUserName.getText() + "',accountPassWord=N'" + tfSignUpPassWord2.getText() + ",accountRole='Customer' where accountUserName=N'" + lbCusName.getText() + "'");
                 insertCustomer();
                 getCustomerDB();
                 getAccountDB();
@@ -1176,11 +1182,11 @@ public class CustomerSceneController implements Initializable {
         colBookInfoNote.setCellValueFactory(new PropertyValueFactory<BookInfo, String>("bookNote"));
         tvBookInfo.setItems(list);
     }
-        
+
     public ObservableList<BookDetail> getBookDetailDB(Integer ma) {
         ObservableList<BookDetail> bookDetail = FXCollections.observableArrayList();
         java.sql.Connection cn = getConnect();
-        String sql = "select bookDishName,bookDishQuantity,bookDishPrice from Book where bookID=" + ma + " and bookCustomerName='"+lbCusName.getText()+"'";
+        String sql = "select bookDishName,bookDishQuantity,bookDishPrice from Book where bookID=" + ma + " and bookCustomerName='" + lbCusName.getText() + "'";
         Statement st;
         ResultSet rs;
         try {
