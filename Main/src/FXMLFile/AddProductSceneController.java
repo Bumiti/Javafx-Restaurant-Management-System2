@@ -201,6 +201,7 @@ public class AddProductSceneController implements Initializable {
             if (Objects.equals(snProductQOH.getValue(), Integer.valueOf(lbMax.getText()))) {
                 if (textDialog("Confirm", "Reason", "" + lbStaff.getText() + " have delete " + tfProductName.getText() + " product for ") == true) {
                     update("delete from Inventory where productName='" + tfProductName.getText() + "'");
+                    update("update Menu set dishStatus='Unavailable' where dishIngredient = N'" + tfProductName.getText() + "'");
                     alertSuccess("Delete Successfully!");
                     Stage stage = (Stage) vbAddRemove.getScene().getWindow();
                     stage.close();

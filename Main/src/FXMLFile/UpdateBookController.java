@@ -288,7 +288,7 @@ public class UpdateBookController implements Initializable {
     public static ObservableList<OrderMenuDB> getOrderMenuDB() {
         ObservableList<OrderMenuDB> orderMenuList = FXCollections.observableArrayList();
         java.sql.Connection cn = getConnect();
-        String sql = "select a.dishName,a.dishPrice,floor(b.productQOH/a.dishConsume) as dishAvailable,a.dishDescription from Menu a join Inventory b on productName =dishIngredient where a.dishStatus='Available'";
+        String sql = "select a.dishName,a.dishPrice,floor(b.productQOH/a.dishConsume) as dishAvailable,a.dishDescription from Menu a join Inventory b on productName =dishIngredient where a.dishStatus='Available' and floor(b.productQOH/a.dishConsume)>=1";
         Statement st;
         ResultSet rs;
         try {
@@ -318,7 +318,7 @@ public class UpdateBookController implements Initializable {
     public static ObservableList<OrderMenuDB> getOrderMenuDB(String Catalogies) {
         ObservableList<OrderMenuDB> orderMenuList = FXCollections.observableArrayList();
         java.sql.Connection cn = getConnect();
-        String sql = "select a.dishName,a.dishPrice,floor(b.productQOH/a.dishConsume) as dishAvailable,a.dishDescription from Menu a join Inventory b on productName =dishIngredient where a.dishStatus='Available' and a.dishCatalogies=N'" + Catalogies + "'";
+        String sql = "select a.dishName,a.dishPrice,floor(b.productQOH/a.dishConsume) as dishAvailable,a.dishDescription from Menu a join Inventory b on productName =dishIngredient where a.dishStatus='Available' and a.dishCatalogies=N'" + Catalogies + "' and floor(b.productQOH/a.dishConsume)>=1";
         Statement st;
         ResultSet rs;
         try {

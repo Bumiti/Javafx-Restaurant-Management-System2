@@ -944,6 +944,7 @@ public class StaffSceneController implements Initializable {
                 if (alertConFirm("Are you want to create new product?") == true) {
                     insertInventory();
                     clearInventory();
+                    //update("update Menu set dishStatus='Available' where dishIngredient = N'" + tfInventoryName.getText() + "'");
                     getIngredient();
                     showOrderMenuDB();
                     log("" + lbUser.getText() + " have create new product!");
@@ -977,11 +978,12 @@ public class StaffSceneController implements Initializable {
         if (event.getSource() == btnInventoryDelete) {
             InventoryDB i = tvInventory.getSelectionModel().getSelectedItem();
             if (textDialog("Confirm", "Reason", "" + lbUser.getText() + " have delete " + i.getProductName() + " product for ") == true) {
+                update("update Menu set dishStatus='Unavailable' where dishIngredient = N'" + i.getProductName() + "'");
                 deleteInventory();
                 clearInventory();
-                update("update Menu set dishStatus='Unavailable' where dishIngredient = N'" + i.getProductName() + "')");
                 showOrderMenuDB();
                 showLogDB();
+                showMenuDB();
                 alertSuccess("Delete Successfully!");
             }
         }
@@ -1793,7 +1795,7 @@ public class StaffSceneController implements Initializable {
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
     private static final String[] possition = {"Manager", "Supervisor", "Waiter"};
     private static final String[] role = {"Manager", "Supervisor", "Waiter", "Customer"};
-    private static final String[] productCatalogies = {"Ingredient"};
+    private static final String[] productCatalogies = {"Ingredient,Tool"};
     private static final String[] dishCatalogies = {"Hors d'oeuvres", "Soup", "Fish Dish", "Meat Dish", "Main Course", "Salad", "Dessert", "Drink", "Other"};
     private static final String[] dishStatus = {"Available", "Unavailable"};
     private static final String[] gender = {"Male", "Female"};
@@ -2787,7 +2789,7 @@ public class StaffSceneController implements Initializable {
     public static ObservableList<OrderMenuDB> getOrderMenuDB() {
         ObservableList<OrderMenuDB> orderMenuList = FXCollections.observableArrayList();
         java.sql.Connection cn = getConnect();
-        String sql = "select a.dishName,a.dishPrice,floor(b.productQOH/a.dishConsume) as dishAvailable,a.dishDescription from Menu a join Inventory b on productName =dishIngredient where a.dishStatus='Available'";
+        String sql = "select a.dishName,a.dishPrice,floor(b.productQOH/a.dishConsume) as dishAvailable,a.dishDescription from Menu a join Inventory b on productName =dishIngredient where a.dishStatus='Available' and floor(b.productQOH/a.dishConsume)>=1";
         Statement st;
         ResultSet rs;
         try {
@@ -2817,7 +2819,7 @@ public class StaffSceneController implements Initializable {
     public static ObservableList<OrderMenuDB> getOrderMenuDB(String Catalogies) {
         ObservableList<OrderMenuDB> orderMenuList = FXCollections.observableArrayList();
         java.sql.Connection cn = getConnect();
-        String sql = "select a.dishName,a.dishPrice,floor(b.productQOH/a.dishConsume) as dishAvailable,a.dishDescription from Menu a join Inventory b on productName =dishIngredient where a.dishStatus='Available' and a.dishCatalogies=N'" + Catalogies + "'";
+        String sql = "select a.dishName,a.dishPrice,floor(b.productQOH/a.dishConsume) as dishAvailable,a.dishDescription from Menu a join Inventory b on productName =dishIngredient where a.dishStatus='Available' and a.dishCatalogies=N'" + Catalogies + "' and floor(b.productQOH/a.dishConsume)>=1";
         Statement st;
         ResultSet rs;
         try {
