@@ -1016,7 +1016,7 @@ public class CustomerSceneController implements Initializable {
                 }
                 tfSignUpMail.setText(rs.getString("customerMail"));
                 tfSignUpAddress.setText(rs.getString("customerAddress"));
-                tfSignUpPhone.setText("" + rs.getString("customerPhone"));
+                tfSignUpPhone.setText(rs.getString("customerPhone"));
                 cusList.add(c);
             }
             cn.close();
@@ -1086,7 +1086,7 @@ public class CustomerSceneController implements Initializable {
             st.setString(1, tfSignUpFullName.getText());
             st.setDate(2, java.sql.Date.valueOf(tfSignUpDOB.getValue()));
             st.setString(3, tfSignUpAddress.getText());
-            st.setInt(4, Integer.valueOf(tfSignUpPhone.getText()));
+            st.setString(4, tfSignUpPhone.getText());
             st.setString(5, tfSignUpMail.getText());
             RadioButton button = (RadioButton) gender.getSelectedToggle();
             st.setString(6, button.getText());
